@@ -17,16 +17,15 @@ node {
     }
 
     stage('Image Build') {
-        sh "docker build -t $containerName:$tag --no-cache ."
+        sh "docker build -t ${dockerHubUser}/${containerName}:${tag} --no-cache ."
         echo "Image build complete"
     }
 
-    stage('Pushing it ot the DockerHub'){
+    stage('Pushing to DockerHub'){
         echo 'Pushing the docker image to DockerHub'
-        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub)]) {
-            sh "${dockerCMD} login -u alishataj-p ${dockerhub}"
-            sh "${dockerCMD} push alishataj/banking-finance:${tagName}"      
-  }
+        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+            sh "docker login -u $alishataj -p ${dockerhub}"
+            sh "docker push $alishataj/$banking-finance:${tag}"
+        }
     }
-}
 }
