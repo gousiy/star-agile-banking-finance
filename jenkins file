@@ -21,12 +21,11 @@ node {
         echo "Image build complete"
     }
 
-    stage('Push to Docker Registry') {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUser', passwordVariable: 'dockerPassword')]) {
-            sh "docker login -u $dockerUser -p $dockerPassword"
-            sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-            sh "docker push $dockerUser/$containerName:$tag"
-            echo "Image push complete"
-        }
+    stage('Pushing it ot the DockerHub'){
+        echo 'Pushing the docker image to DockerHub'
+        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub)]) {
+            sh "${dockerCMD} login -u alishataj-p ${dockerhub}"
+            sh "${dockerCMD} push alishataj/banking-finance:${tagName}"      
+  }
     }
 }
