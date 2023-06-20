@@ -23,7 +23,7 @@ node {
 
     stage('Push to Docker Registry') {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUser', passwordVariable: 'dockerPassword')]) {
-            sh "docker login -u $alishataj -p $dockerPassword"
+            sh "docker login -u $alishataj -p $alisha9298"
             sh "docker tag $containerName:$tag $alishataj/$containerName:$tag"
             sh "docker push $alishataj/$containerName:$tag"
             echo "Image push complete"
