@@ -1,4 +1,4 @@
-def containerName = "banking"
+def containerName = "bank"
 def tag = "latest"
 def dockerHubUser = "alishataj"
 def httpPort = "8084"
