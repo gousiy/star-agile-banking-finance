@@ -31,5 +31,7 @@ node{
             echo "Image push complete"
         }
    }
-	
+	stage("ansible") {
+	ansiblePlaybook become: true, credentialsId: 'ssh-key-ansible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
+   }
 }
