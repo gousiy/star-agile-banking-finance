@@ -1,4 +1,4 @@
-def containerName="insure_me"
+def containerName="banking"
 def tag="latest"
 def dockerHubUser="alishataj"
 def http="8084"
@@ -6,7 +6,7 @@ def http="8084"
 
 node{
 	stage('checkout'){
-	    checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gousiy/star-agile-insurance-project.git']])
+	    checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gousiy/star-agile-banking-finance.git']])
     }
 
 	stage('Build'){
@@ -31,7 +31,5 @@ node{
             echo "Image push complete"
         }
    }
-	stage("ansible") {
-	ansiblePlaybook become: true, credentialsId: 'ssh-key-ansible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
-   }
+	
 }
